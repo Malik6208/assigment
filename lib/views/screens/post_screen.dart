@@ -11,6 +11,14 @@ class PostScreen extends StatefulWidget {
 
 class _PostScreenState extends State<PostScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<PostViewModel>(context, listen: false).getPosts();
+    });
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -41,12 +49,9 @@ class _PostScreenState extends State<PostScreen> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Provider.of<PostViewModel>(context, listen: false).getPosts();
-        },
-        child: Icon(Icons.refresh),
-      ),
+
     );
   }
+
+
 }
